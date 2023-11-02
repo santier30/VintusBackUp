@@ -1,8 +1,8 @@
 
-import useImput from "./use-Input";
+import useInput from "./use-Input";
 const useContacts=()=>{
 
-const [message,setMessage,messageValidation]=useImput(
+const [message,setMessage,messageValidation]=useInput(
     (content)=>{
         let message = [];
         if (content === "") {
@@ -26,7 +26,7 @@ const [message,setMessage,messageValidation]=useImput(
 
 );
 
-const [name,setName,nameValidation]=useImput(
+const [name,setName,nameValidation]=useInput(
   (content)=>{  let message = [];
     if (content === "") {
         message.push("El nombre es obligatorio.");
@@ -43,7 +43,7 @@ const [name,setName,nameValidation]=useImput(
     return message.length ? message : "";}
 );
 
-const [email,setEmail,emailValidation]=useImput(
+const [email,setEmail,emailValidation]=useInput(
     (content)=>{ let message = [];
         if (content === "") {
             message.push("Email es obligatorio.");
@@ -55,7 +55,7 @@ const [email,setEmail,emailValidation]=useImput(
     return message.length ? message : "";}
 );
 
-const [phone,setPhone,phoneValidation]=useImput(
+const [phone,setPhone,phoneValidation]=useInput(
     (content)=>{    let message = [];
         if (content === "") {
             return ""

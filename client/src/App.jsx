@@ -13,6 +13,8 @@ import CartContext from './Components/cart/CartContext';
 import 'font-awesome/css/font-awesome.min.css';
 import Footer from './Components/footer/footer';
 import ItemPage from './Components/itemPage/ItemPage/itemPage';
+import LogIn from './Components/User/LogIn';
+import SingUp from './Components/User/SingUp';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
@@ -49,6 +51,8 @@ function App() {
         <Route path="/contactos" element={<Contactos />} />
         <Route path="/Tienda" element={<Shop/>} />
         <Route path="/:name" element={<ItemPage/>} />
+        <Route path="/LogIn" element={<LogIn/>} />
+        <Route path="/SingUp" element={<SingUp/>} />
         <Route path="/" element={<Landing/>} />
         <Route path="/*" element={<h1>Error page not found</h1>} />
     </Routes>

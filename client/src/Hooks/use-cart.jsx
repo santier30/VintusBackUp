@@ -56,7 +56,6 @@ const useCart=()=>{
       };
       
       const savedCartData = localStorage.getItem("cartItems")
-
       const initialState = savedCartData ? JSON.parse(savedCartData) : [];
     
       const [cartItems, dispatchCartItems] = useReducer(cartReducer, initialState);

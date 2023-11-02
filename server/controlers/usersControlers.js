@@ -1,4 +1,4 @@
-
+const Users = require('../schemas/User')
 const validateMessage = (req , res , next) => {
     try {
         const {name,email,phone,message} = req.body
@@ -61,8 +61,41 @@ const validateMessage = (req , res , next) => {
         }
     
     }
+    const singUp = async(req,res)=>{
+        const data = req.body;
+        console.log(data);
+      try {
+        const user = new Users(data);
+        const response = await user.save();
+        console.log(response);
+     
+        res.status(200).json(response);
+      } catch (error) {
+        console.log(error.message);
+        res.status(500).json(error.message);
+      }
+    
+    
+    }
+
+    const logIn = async(req,res)=>{
+        const data = req.body;
+        console.log(data);
+      try {
+        const user = await Users.findOne(data);
+        console.log(user);
+     if (user){res.status(200).json(user);}else{throw new Error("Email o contrasena incorrecta")}
+      } catch (error) {
+        console.log(error.message);
+        res.status(500).json(error);
+      }
+    
+    
+    }
 
 module.exports ={
     validateMessage,
-    sendMessage
+    sendMessage,
+    singUp,
+    logIn
 }

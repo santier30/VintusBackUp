@@ -74,7 +74,7 @@ img{
 
 }
 #{&}_li{
-  transform: translateX(220%);
+  transform: translateX(50vw);
     @include transition-ease;
 }
 .apere{
@@ -125,8 +125,10 @@ img{
     transform: translateY(-8px) rotate(-45deg - 360deg);
   }}
   
-
-@for $i from 1 through 5{
+.log{
+  color: rgb(68, 255, 47);
+}
+@for $i from 1 through 6{
   .apere:nth-child(#{$i}){
     transition-delay: ($i*0.08s)+0.05s;
   }

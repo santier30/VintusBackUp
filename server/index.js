@@ -4,6 +4,8 @@ const products = require('./routes/products')
 const users = require('./routes/users')
 const mongoose = require('mongoose');
 const Wine = require('./schemas/Wine')
+const fileUpload = require('express-fileupload');
+
 const app = express()
 mongoose.connect("mongodb+srv://Santier30:VintusTM@vintus.rseaz50.mongodb.net/Vintus").then(() => {
     console.log('Connected to MongoDB');
@@ -28,6 +30,7 @@ mongoose.connect("mongodb+srv://Santier30:VintusTM@vintus.rseaz50.mongodb.net/Vi
 //   run();
   
 app.use(express.json());
+app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/Vintus/Products', products)

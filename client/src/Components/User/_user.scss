@@ -1,0 +1,68 @@
+.Log{
+    position: relative;
+    .Video{
+    width: 99.1vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+   align-items: center;
+}
+.Form{
+    z-index: 1;
+    background-color: #00000020;
+    
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    form{
+        background-color: rgba(51, 50, 50, 0.775);
+        width: 380px;
+        max-width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center; padding: 1rem;
+        h2,p{
+            padding: 1rem;
+            color: #FFF;
+        }
+        input{
+            font-size: 1.2rem;
+            margin: 1.5rem 0 .75rem 0;
+            resize: none;
+            border: none;
+            width: 90%;
+            padding: 10px;
+            background-color: transparent;
+            border-bottom: solid 1px #908f8f;
+            color: #FFF;
+            outline: none;
+        }
+        div{
+            margin: 1.5rem 0 ;
+            color: #FFF;
+            a{text-decoration: none;
+            color: #b9134f;
+            padding: .4rem;
+            
+        }
+        }
+        button{
+            width: 100%;
+            padding: .6rem 0; 
+            background-color: rgba(0, 0, 0, 0.424);
+            border: none;
+            color: $secondary-color;
+            cursor: pointer;
+            &:hover{
+               color:#b9134f ; 
+            }
+        }
+        .animated{display: none; }
+    }
+}
+}
+
