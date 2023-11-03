@@ -33,6 +33,22 @@ router.post('/Update',async(req,res)=>{
       }
 })
 
+router.post('/Address',async(req,res)=>{
+  const data = req.body;
+      console.log(data);
+    try {
+      const user = await Users.findOne({email:data.email,password:data.password});
+      console.log(user);
+      user.address=user.address[0]?[...user.address,data.address]:[data.address];
+
+      const resp =  await user.save()
+   if (resp){res.status(200).json(resp);}else{throw new Error("Email o contrasena incorrecta")}
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).json(error);
+    }
+})
+
 
 
 

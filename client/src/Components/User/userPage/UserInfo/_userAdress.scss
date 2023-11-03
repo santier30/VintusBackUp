@@ -1,0 +1,60 @@
+
+.addresSection{
+    display: flex;
+    h2{
+        flex: 1;
+        margin: 0;
+    }
+    button{
+        height: fit-content;
+        background-color: $secondary-color;
+        border: none;
+        padding: .2rem;
+        border-radius: .2rem;
+        color: #3d3d3d;
+    }
+}
+
+.formArt{
+    form{
+        border: solid 3px $secondary-color;
+        border-radius: .7rem;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        max-width: 600px;
+        gap: 1rem;
+        input,select{
+            margin: .7rem;
+            resize: none;
+            border: none;
+            padding: .5rem;
+            width: 90%;
+            background-color: transparent;
+            border-bottom: solid 1px #908f8f;
+            color: #FFF;
+            &:focus{
+                outline: none;
+            border-bottom: solid 1px #ddd;
+    
+            }
+        }
+        option{color: black;}
+        button{
+            align-self: flex-end;
+            background-color: transparent;
+            color: $secondary-color;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            &:active{
+                color:#b9134f
+            }
+        }
+        p{
+            color: #908f8f;
+            font-size: 1rem;
+        }
+    }
+
+}

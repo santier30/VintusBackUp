@@ -95,7 +95,7 @@ function App() {
           <Route index element={<UserProfile/>} /> 
           <Route path="Direcciones" element={<UserAddress/>} />
           <Route path="Pedidos" element={<UserOrders />} />
-          <Route path="Autenticación" element={<UserAuth />} />
+          <Route path="Autenticacion" element={<UserAuth />} />
           <Route path="Carrito" element={<UserCart />} />
         </Route>
         <Route path="/*" element={<h1>Error page not found</h1>} />

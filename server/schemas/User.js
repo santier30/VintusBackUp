@@ -31,7 +31,36 @@ const wineSchema = new mongoose.Schema({
       message: 'La contraseña fue invalida',
     },
   },
-  adress: Array,
+  address:{
+    type: [
+      {
+        postalCode: {
+          type: Number,
+          required: true,
+          validate: {
+            validator: function(value) {
+                return /^\d{4}$/.test(value);
+
+            },
+            message: 'Postal code must be a 4-digit number for the last object in the array.'
+          }
+        },
+        street: {
+          type: String,
+          required: true
+        },
+        number: {
+          type: Number,
+          required: true
+        },
+        province: {
+          type: String,
+          required: true
+        },
+        apartment:String
+      },]
+
+},
   buys: Array,
   dni:{
     type: Number,

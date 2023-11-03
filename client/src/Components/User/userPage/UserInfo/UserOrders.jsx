@@ -1,8 +1,8 @@
 const UserOrders  = ()=>{
     return(
-        <section>
+        <article>
             <h2>Pedidos</h2>
-        </section>
+        </article>
     )
 }
 export default UserOrders

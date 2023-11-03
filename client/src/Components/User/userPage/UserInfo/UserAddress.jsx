@@ -1,8 +1,22 @@
+import AddAddress from "./AddressFIles/addAdress"
+import { useState } from "react"
 const UserAddress  = ()=>{
+
+const [add,setAdd] = useState(false)
+
     return(
-        <section>
+        <>
+        { !add ? (
+          <article className="addresSection">
             <h2>Direcciones</h2>
-        </section>
+            <button onClick={() => setAdd(!add)}>Agregar dirección</button>
+          </article>
+        ) : (
+          <AddAddress add={add} setAdd={setAdd} />
+        )}
+      </>
+      
+     
     )
 }
 export default UserAddress

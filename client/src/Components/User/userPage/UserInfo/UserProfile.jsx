@@ -2,10 +2,8 @@ import { useState } from "react"
 import useProfile from "../../../../Hooks/use-profile"
 import useError from "../../../../Hooks/use-error"
 import useUser from "../../../../Hooks/useUser"
-import { useNavigate } from "react-router-dom";
 const UserProfile = ()=>{
     const userData = JSON.parse(localStorage.getItem("USER"))
-    const navigate = useNavigate();
     const [edit,setEdit] = useState(false)
     const [selectedGender, setSelectedGender] = useState(userData.sex?userData.sex:'');
     const [selectedAge, setSelectedAge] = useState(userData.birth?userData.birth.split('T')[0]:"");
