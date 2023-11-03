@@ -8,7 +8,7 @@ const SingUpForm = ()=>{
     const [name,nameValidation,email,emailValidation,password, passwordValidation] = useSingUp();
     const makeError = useError()
     const [cPass,setCPass]=useState('')
-    const {createUser} = useUser();
+    const {createUser} = useUser("Creando Usuario...","Bienvenido a Vintus","Este email ya esta asosiado a una cuenta");
 
     const submitHandler = (event) => {
         event.preventDefault();

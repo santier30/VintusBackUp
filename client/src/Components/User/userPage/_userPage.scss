@@ -1,0 +1,29 @@
+.UserPage{
+    padding: 5rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.809);
+    .wrap{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+    }
+    .UserSection{
+        height: 100%;
+        width: 100%;
+        padding: 2rem;
+        h2{
+            color: $secondary-color;
+            margin-bottom: 2rem;
+        }
+    }
+}
+@include media-lg{
+    .UserPage{
+
+        .wrap{
+            flex-direction: row;
+        }
+    }  
+}

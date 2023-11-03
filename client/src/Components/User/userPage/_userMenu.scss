@@ -1,0 +1,40 @@
+.UserNav{
+    height: fit-content;
+    width: 100%;
+    h1{
+        color: $secondary-color;
+        text-align: center;
+    }
+    menu{
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      
+        li{
+            padding: 2rem;
+            
+            a{
+                text-decoration: none;
+                color: #908f8f;
+            }
+            .selected{
+                border-left: 3px solid $secondary-color;
+            }
+        }
+    }
+}
+@include media-lg{
+    .UserNav{
+        width: 30%;
+        h1{
+            text-align: start;
+        }
+        menu{
+            list-style: none;
+            display: block;
+
+          
+        }
+    }
+}

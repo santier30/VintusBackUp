@@ -40,7 +40,7 @@ function Menu(props) {
             <li className={"nav_li "+open.link}><Link to="/Contactos" className={"nav_Link "+active.Contactos}  >Contactos</Link></li>
             <li className={"nav_li "+open.link}><Link to="/SobreNosotros" className={"nav_Link "+active.SobreNosotros}  >Sobre Nosotros</Link></li>
             <li className={"nav_li "+open.link}><button className="nav_Link" id={"nav_Link "} onMouseEnter={()=>props.setDisplayState()} onMouseLeave={props.setDisplayState}><i className='fa fa-shopping-cart'></i></button></li>
-            <li className={"nav_li "+open.link }><Link to={userData?"/UserPage":"/LogIn"} className={`nav_Link ${userData?"log":''}`}  ><i className='fa fa-user'></i></Link></li>
+            <li className={"nav_li "+open.link }><Link to={userData?"/Usuario":"/Ingresar"} className={`nav_Link ${userData?"log":''}`}  ><i className='fa fa-user'></i></Link></li>
 
           </menu>
           </nav>

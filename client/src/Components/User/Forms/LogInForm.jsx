@@ -7,7 +7,7 @@ import useUser from '../../../Hooks/useUser';
 const LogInForm = ()=>{
     const [email,setEmail]=useState('')
     const [pass,setPass]=useState('')
-    const {log} = useUser()
+    const {log} = useUser("Entrando...","Bienvenido a Vintus","Email o contraseña incorrecta")
 
 
     const submitHandler = (event) => {
@@ -29,7 +29,7 @@ const LogInForm = ()=>{
                         <div>
                         <Link to='/'>Cambiar contraseña</Link>
                         <span>/</span>
-                        <Link to='/SingUp'>Crear un usuario</Link>
+                        <Link to='/CrearCuenta'>Crear un usuario</Link>
                         </div>
                         <button>Ingresar</button>
 
