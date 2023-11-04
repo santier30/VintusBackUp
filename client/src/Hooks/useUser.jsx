@@ -20,6 +20,7 @@ const useUser = (load,suc,fail,a)=>{
           if (!response.ok) {
             throw new Error(response.message);
           }
+          console.log(response);
           const user = await response.json();
           toast.update(id, { render: suc, type: "success", isLoading: false, autoClose: true });
           localStorage.setItem("USER", JSON.stringify(user))

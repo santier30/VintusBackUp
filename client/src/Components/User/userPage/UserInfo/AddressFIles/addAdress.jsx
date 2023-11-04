@@ -66,7 +66,7 @@ const AddAddress  = ({setAdd , add})=>{
         if (
             cPostal.er===""
           ){console.log('a')
-            log({password:userData.password,email:userData.email,address:{postalCode:cPostal.value,street:calle,number:numero,province:selectedProvince}},"/Vintus/Users/Address");
+            log({password:userData.password,email:userData.email,address:{postalCode:cPostal.value,street:calle,number:numero,province:selectedProvince,apartment:departamento}},"/Vintus/Users/Address");
           }
    
             
@@ -78,7 +78,7 @@ const AddAddress  = ({setAdd , add})=>{
                 <button onClick={()=>{setAdd(()=>!add)}}>Cancelar</button>
             </article>
             <article className="formArt">
-                <form action="" onSubmit={submitHandler}>
+                <form action="" onSubmit={(event)=>{submitHandler(event);setAdd()}}>
                 <select required value={selectedProvince} onChange={handleProvinceChange}>
                     <option value="">Seleccione una probincia</option>
                     {argentineanProvinces.map((province, index) => (
@@ -92,7 +92,7 @@ const AddAddress  = ({setAdd , add})=>{
                 <input required type="text" placeholder="Calle" value={calle} onChange={handleCalleChange}
                 />
 
-                <input required type="text" placeholder="Numero" value={numero} onChange={handleNumeroChange}
+                <input required type="number" placeholder="Numero" value={numero} onChange={handleNumeroChange}
                 />
 
                 <input type="text" placeholder="Numero de Departamento" value={departamento} onChange={handleDepartamentoChange}

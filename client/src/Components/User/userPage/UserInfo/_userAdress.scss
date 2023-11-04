@@ -1,3 +1,29 @@
+.addresses{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    .address{
+    color: #908f8f;
+    border: solid 3px $secondary-color;
+    border-radius: .7rem;
+    padding: 2rem 1rem;
+    width: fit-content;
+    width: 100%;
+    max-width: 200px;
+    button{
+        float: right;
+        background-color: transparent;
+        color: $secondary-color;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        &:active{
+            color:#b9134f
+        }
+    }
+}
+}
+
 
 .addresSection{
     display: flex;

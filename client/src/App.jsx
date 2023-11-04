@@ -58,7 +58,6 @@ function App() {
   };
   useEffect(() => {
     if(userData){
-      console.log("aasdasdasd")
       updetedData()
     }
   

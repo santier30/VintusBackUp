@@ -12,7 +12,7 @@ const UserMenu = ()=>{
       const pageName = currentPath.split('/').filter(Boolean)[1];
       setActive(pageName?{ [pageName]: "selected" }:{ Perfil: "selected" });
     }, [currentPath]);
-    console.log(active)
+    
     return(
        
       

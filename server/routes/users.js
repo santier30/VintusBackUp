@@ -25,6 +25,7 @@ router.post('/Update',async(req,res)=>{
         user.sex=data.sex;
         user.birth=data.birth;
         user.phone=data.phone;
+        user.apartment=data.apartment;
         const resp =  await user.save()
      if (resp){res.status(200).json(resp);}else{throw new Error("Email o contrasena incorrecta")}
       } catch (error) {
@@ -48,6 +49,33 @@ router.post('/Address',async(req,res)=>{
       res.status(500).json(error);
     }
 })
+
+router.delete('/Delete/:addressId', async(req, res) => {
+  const apiKey = req.headers.authorization; 
+  const email = req.headers['x-user-email']; 
+  const addressId = req.params.addressId; 
+
+  try {
+    const updatedUser = await Users.findOneAndUpdate(
+      { email: email,password: apiKey},
+      { $pull: { address: { _id: addressId } } },
+      { new: true }
+    ).exec();
+  
+    if (updatedUser) {
+
+      console.log(updatedUser);
+    } else {
+
+      console.log("User or address not found");
+    }
+    res.status(200).json(updatedUser);
+  } catch (error) {
+   
+    res.status(403).json({ message: 'Address deletion failed or unauthorized' });
+  }
+});
+
 
 
 
