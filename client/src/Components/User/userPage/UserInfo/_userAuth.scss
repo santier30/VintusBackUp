@@ -1,0 +1,43 @@
+.passSection{
+    color: #fff;
+    border: solid 3px $secondary-color;
+    border-radius: .7rem;
+    padding: 2rem 1rem; 
+    width: 100%;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    button{
+        background-color: transparent;
+        color: $secondary-color;
+        border: none;
+        font-size: 1.5rem;
+        width: fit-content;
+        cursor: pointer;
+        &:active{
+            color:#b9134f
+        }
+    }
+    form{
+  
+        display: flex;
+        flex-direction: column;
+        max-width: 600px;
+        gap: 1rem;
+        input,select{
+            margin: .7rem;
+            resize: none;
+            border: none;
+            padding: .5rem;
+            width: 90%;
+            background-color: transparent;
+            border-bottom: solid 1px #908f8f;
+            color: #FFF;
+            &:focus{
+                outline: none;
+            border-bottom: solid 1px #ddd;
+    
+            }
+        }}
+}

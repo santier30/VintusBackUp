@@ -17,7 +17,7 @@ router.post('/Update',async(req,res)=>{
     const data = req.body;
         console.log(data);
       try {
-        const user = await Users.findOne({email:data.email,password:data.password});
+        const user = await Users.findOne({email:data.email,apiKey:data.apiKey},{ password: 0 });
         console.log(user);
         user.email=data.newEmail;
         user.name=data.name;
@@ -38,7 +38,7 @@ router.post('/Address',async(req,res)=>{
   const data = req.body;
       console.log(data);
     try {
-      const user = await Users.findOne({email:data.email,password:data.password});
+      const user = await Users.findOne({email:data.email,apiKey:data.apiKey},{ password: 0 });
       console.log(user);
       user.address=user.address[0]?[...user.address,data.address]:[data.address];
 
@@ -54,12 +54,14 @@ router.delete('/Delete/:addressId', async(req, res) => {
   const apiKey = req.headers.authorization; 
   const email = req.headers['x-user-email']; 
   const addressId = req.params.addressId; 
-
+console.log(apiKey)
   try {
     const updatedUser = await Users.findOneAndUpdate(
-      { email: email,password: apiKey},
+      { email: email,apiKey: apiKey},
       { $pull: { address: { _id: addressId } } },
-      { new: true }
+      { projection: { password: 0 },
+        new: true 
+      }
     ).exec();
   
     if (updatedUser) {
@@ -75,7 +77,21 @@ router.delete('/Delete/:addressId', async(req, res) => {
     res.status(403).json({ message: 'Address deletion failed or unauthorized' });
   }
 });
-
+router.post('/Password',async(req,res)=>{
+  const data = req.body;
+      console.log(data);
+    try {
+      const user = await Users.findOne({email:data.email,apiKey:data.apiKey,password:data.password});
+      console.log(user);
+      user.password=data.newPassword;
+      const resp =  await user.save()
+      const userWithoutPassword = await Users.findById(resp._id, { password: 0 })
+   if (userWithoutPassword){res.status(200).json(userWithoutPassword);}else{throw new Error("Email o contrasena incorrecta")}
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).json(error);
+    }
+})
 
 
 

@@ -1,7 +1,7 @@
 import CartItem from "./cartItem"
+import { Link } from "react-router-dom";
 const Cart = (props)=>{
-  const inCartFood = props.cartItem
-  .filter((dish) => dish.Amount > 0);
+  const inCartFood = props.cartItem;
   
     return(
         <section className={"cart "+props.displayState} id="cart_section">
@@ -22,9 +22,9 @@ const Cart = (props)=>{
         <article className="cart_finish">
           <div>
             <h2>Subtotal</h2>
-            <span id="total">{inCartFood[0]?inCartFood.reduce((a, c) => {return a += parseFloat(c.Price)*c.Amount}, 0).toFixed(2):"PRECIO TOTAL"}</span>
+            <span id="total">{inCartFood[0]?"$" + inCartFood.reduce((a, c) => {return a += parseFloat(c.Price)*c.Amount}, 0).toFixed(2):"PRECIO TOTAL"}</span>
           </div>
-          <button id="cart_submit">Finalizar Pedido</button>
+          <button id="cart_submit"><Link to="/Usuario/Carrito">Finalizar Pedido</Link></button>
         </article>
         </section> 
     )

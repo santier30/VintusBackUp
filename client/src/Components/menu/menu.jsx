@@ -23,6 +23,7 @@ function Menu(props) {
 
   }
   const userData = JSON.parse(localStorage.getItem("USER"))
+  console.log(userData)
   
     return (
         <header className="nav">

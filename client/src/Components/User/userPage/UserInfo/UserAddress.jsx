@@ -9,7 +9,7 @@ const del = useDeleteAddress()
 
 
 const deleteHandler =(id)=>{
-  del(`/Vintus/Users/Delete/${id}`,{apiKey:userData.password,email:userData.email},'/Usuario/Direcciones')
+  del(`/Vintus/Users/Delete/${id}`,{apiKey:userData.apiKey,email:userData.email},'/Usuario/Direcciones')
 }
     return(
         <>

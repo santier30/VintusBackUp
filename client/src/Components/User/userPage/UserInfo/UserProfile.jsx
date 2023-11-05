@@ -24,7 +24,7 @@ const UserProfile = ()=>{
         if (
             name.er==="" && email.er==="" && dni.er==="" && phone.er===""
           ){console.log('a')
-            log({password:userData.password,email:userData.email,newEmail:email.value,name:name.value,dni:dni.value,sex:selectedGender,birth:selectedAge,phone:phone.value},"/Vintus/Users/Update");
+            log({apiKey:userData.apiKey,email:userData.email,newEmail:email.value,name:name.value,dni:dni.value,sex:selectedGender,birth:selectedAge,phone:phone.value},"/Vintus/Users/Update");
           }
    
             

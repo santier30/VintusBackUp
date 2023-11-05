@@ -14,6 +14,7 @@
     #{&}_item{
         border-bottom: $secondary-color 1px solid;
         padding: 1rem;
+        align-items: center;
         &:hover{
             z-index: 1000;
             box-shadow: 0 0 .9rem rgba(0, 0, 0, 1);
@@ -36,6 +37,7 @@
         }
     }
     .item-buttons{
+        display: flex;
         input{
             width: 1rem;
             
@@ -45,9 +47,11 @@
             background-color: $secondary-color;
             border: none;
             width: 18px;
+            height: 20px;
             padding: .3rem;
             cursor: pointer;
-            text-align: center;
+            display: flex;
+            align-items: center;
         }
     }
     #{&}_finish{
@@ -63,7 +67,11 @@
             padding: .6rem 0; 
             background-color: rgba(0, 0, 0, 0.849);
             border: none;
-            color: $secondary-color;
+            
+            a{
+                text-decoration: none;
+                color: $secondary-color;
+            }
             cursor: pointer;
             &:hover{
                color:#b9134f ; 

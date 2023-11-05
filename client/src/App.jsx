@@ -95,7 +95,7 @@ function App() {
           <Route path="Direcciones" element={<UserAddress/>} />
           <Route path="Pedidos" element={<UserOrders />} />
           <Route path="Autenticacion" element={<UserAuth />} />
-          <Route path="Carrito" element={<UserCart />} />
+          <Route path="Carrito" element={<UserCart cartItem={cartItems} onIncrease={increase} onReduce={reduce}/>} />
         </Route>
         <Route path="/*" element={<h1>Error page not found</h1>} />
     </Routes>

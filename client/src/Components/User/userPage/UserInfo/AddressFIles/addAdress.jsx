@@ -66,7 +66,7 @@ const AddAddress  = ({setAdd , add})=>{
         if (
             cPostal.er===""
           ){console.log('a')
-            log({password:userData.password,email:userData.email,address:{postalCode:cPostal.value,street:calle,number:numero,province:selectedProvince,apartment:departamento}},"/Vintus/Users/Address");
+            log({apiKey:userData.apiKey,email:userData.email,address:{postalCode:cPostal.value,street:calle,number:numero,province:selectedProvince,apartment:departamento}},"/Vintus/Users/Address");
           }
    
             

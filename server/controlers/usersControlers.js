@@ -67,9 +67,10 @@ const validateMessage = (req , res , next) => {
       try {
         const user = new Users(data);
         const response = await user.save();
-        console.log(response);
+        const userWithoutPassword = await Users.findById(response._id, { password: 0 })
+        console.log(userWithoutPassword);
      
-        res.status(200).json(response);
+        res.status(200).json(userWithoutPassword);
       } catch (error) {
         console.log(error.message);
         res.status(500).json(error.message);
@@ -82,7 +83,7 @@ const validateMessage = (req , res , next) => {
         const data = req.body;
         console.log(data);
       try {
-        const user = await Users.findOne(data);
+        const user = await Users.findOne(data,{ password: 0 },);
         console.log(user);
      if (user){res.status(200).json(user);}else{throw new Error("Email o contrasena incorrecta")}
       } catch (error) {
