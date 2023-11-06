@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 const UserCart = ({cartItem, onIncrease, onReduce})=>{
 const subTotal = cartItem[0]?cartItem.reduce((a, c) => {return a += parseFloat(c.Price)*c.Amount}, 0).toFixed(2):"Precio Total"
 console.log(subTotal)
@@ -39,7 +40,7 @@ console.log(subTotal)
             <div><h3>{`Subtotal`}</h3><span>{"$" + subTotal}</span></div>
             <div><h3>{`Envio`}</h3><span>{Number(subTotal)>150?"Gratis":"$20"}</span></div>
             <div><h3>Total</h3><span>{Number(subTotal)>150?`$${subTotal}`:`$${Number(subTotal)+20}`}</span></div>
-            <button>Comprar</button>
+            <button ><Link to="/Finalizar-Compra">Comprar</Link></button>
             
             
         </div>

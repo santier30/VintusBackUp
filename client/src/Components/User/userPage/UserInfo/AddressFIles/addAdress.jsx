@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useInput from "../../../../../Hooks/use-Input"; 
 import useUser from "../../../../../Hooks/useUser";
-const AddAddress  = ({setAdd , add})=>{
+const AddAddress  = ({setAdd , add,end})=>{
     const userData = JSON.parse(localStorage.getItem("USER"))
     const [cPostal,setCPostal,cPostalValidation]=useInput(
         (content)=>{    
@@ -43,7 +43,7 @@ const AddAddress  = ({setAdd , add})=>{
       const [numero, setNumero] = useState('');
       const [departamento, setDepartamento] = useState('');
       const [selectedProvince, setSelectedProvince] = useState('');
-      const {log}= useUser("Guardando...","Guardado","Fallo en el guardado",'/Usuario/Direcciones');
+      const {log}= useUser("Guardando...","Guardado","Fallo en el guardado",end);
     
       const handleProvinceChange = (event) => {
         setSelectedProvince(event.target.value);
@@ -97,7 +97,7 @@ const AddAddress  = ({setAdd , add})=>{
 
                 <input type="text" placeholder="Numero de Departamento" value={departamento} onChange={handleDepartamentoChange}
                 />
-                <button type="submit">Agregar</button>
+                <button type="submit" className="add">Agregar</button>
                 </form>
 
             </article></>

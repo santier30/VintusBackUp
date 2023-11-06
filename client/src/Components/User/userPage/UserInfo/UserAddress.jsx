@@ -37,7 +37,7 @@ const deleteHandler =(id)=>{
           </article>
           </>
         ) : (
-          <AddAddress add={add} setAdd={setAdd} />
+          <AddAddress add={add} setAdd={setAdd} end='/Usuario/Direcciones'/>
         )}
       </>
       

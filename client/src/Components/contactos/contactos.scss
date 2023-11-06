@@ -98,6 +98,12 @@
                 color:#b9134f ;
             }
         }
+        #sub{
+            color: $tertiary-color  ;
+            &:hover{
+              color:#136d33 ;
+          }
+          }
     }
 }
 @include media-lg{

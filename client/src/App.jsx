@@ -21,6 +21,7 @@ import UserAuth from './Components/User/userPage/UserInfo/userAuth';
 import UserCart from './Components/User/userPage/UserInfo/UserCart';
 import UserOrders from './Components/User/userPage/UserInfo/UserOrders';
 import UserProfile from './Components/User/userPage/UserInfo/UserProfile';
+import Purchase from './Components/Purchase/Purchase';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
@@ -97,6 +98,7 @@ function App() {
           <Route path="Autenticacion" element={<UserAuth />} />
           <Route path="Carrito" element={<UserCart cartItem={cartItems} onIncrease={increase} onReduce={reduce}/>} />
         </Route>
+        <Route path="/Finalizar-Compra" element={<Purchase/>} />
         <Route path="/*" element={<h1>Error page not found</h1>} />
     </Routes>
     <Footer/>

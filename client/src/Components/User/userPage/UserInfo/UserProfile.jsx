@@ -104,7 +104,7 @@ const UserProfile = ()=>{
 
             {!edit?<button type="button" onClick={()=>{setEdit(()=>!edit);set()}}>Editar</button>:
             <div className="buttonDiv">
-            <button onClick={()=>{setEdit(()=>!edit);set()}}>Cancelar</button>
+            <button onClick={()=>{setEdit(()=>!edit);set()}} className="cancel">Cancelar</button>
             <button type="submit">Editar</button>
             </div>
             }

@@ -84,6 +84,12 @@
         }
         
     }
+    #sub{
+      color: $tertiary-color  ;
+      &:hover{
+        color:#136d33 ;
+    }
+    }
       #form-error{
         text-align: center;
       }

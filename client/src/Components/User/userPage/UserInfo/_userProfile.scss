@@ -10,10 +10,16 @@
     button{
         align-self: flex-end;
         background-color: transparent;
-        color: $secondary-color;
+        color: $tertiary-color;
         border: none;
         font-size: 1.5rem;
         cursor: pointer;
+        &:active{
+            color:#136d33
+        }
+    }
+    .cancel{
+        color: $secondary-color;
         &:active{
             color:#b9134f
         }

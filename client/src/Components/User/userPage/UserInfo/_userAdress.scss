@@ -38,6 +38,7 @@
         padding: .2rem;
         border-radius: .2rem;
         color: #3d3d3d;
+        cursor: pointer;
     }
 }
 
@@ -76,6 +77,14 @@
             &:active{
                 color:#b9134f
             }
+
+        }
+        .add{
+            color: $tertiary-color;
+            &:active{
+                color:#136d33
+            }
+            
         }
         p{
             color: #908f8f;

@@ -18,3 +18,15 @@ main {
   flex-grow: 1;
   min-height: 90vh;
 }
+::-webkit-scrollbar {
+  width: 7px; 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1c9948;
+  border-radius: 10px; 
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(38, 38, 38, 0.661);
+}

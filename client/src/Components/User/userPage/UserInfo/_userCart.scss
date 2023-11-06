@@ -37,17 +37,22 @@
                 
             }
             button{
+                a{
+                    text-decoration: none;
+                    color: $tertiary-color;
+                    &:active{
+                        color:#136d33
+                    }
+                }
                 margin-top: 1rem;
                 background-color: transparent;
-                color: $secondary-color;
+                
                 border: none;
                 font-size: 1.5rem;
                 width: fit-content;
                 float:right;
                 cursor: pointer;
-                &:active{
-                    color:#b9134f
-                }
+
             }
         }
     }
