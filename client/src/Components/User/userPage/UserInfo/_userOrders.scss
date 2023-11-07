@@ -1,0 +1,9 @@
+.gap{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    .address{
+        display: flex;
+        gap: .4rem;
+    }
+}

@@ -49,6 +49,9 @@ const useCart=()=>{
             }
             tFail();
             return state
+
+            case "CLEAR":
+              return []
           
           default:
             return state;
@@ -73,6 +76,9 @@ const useCart=()=>{
         const increase = Name => {
           dispatchCartItems({ type: "INCREASE_AMOUNT", payload: Name });
         };
+        const clear = Name => {
+          dispatchCartItems({ type: "CLEAR", payload: Name });
+        };
 
         useEffect(() => {
           // console.log(cartItems)
@@ -81,6 +87,6 @@ const useCart=()=>{
       
 
 
-        return [cartItems,addToCartHandler,reduce,increase];
+        return [cartItems,addToCartHandler,reduce,increase,clear];
 };
 export default useCart;

@@ -1,12 +1,9 @@
-import { Link } from "react-router-dom"
 import { useState } from "react"
 import AddAddress from "./AddressFIles/addAdress"
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+import { initMercadoPago } from '@mercadopago/sdk-react'
 initMercadoPago("TEST-995ee899-dae7-4488-a7de-70e37d66510f");
-const UserCart = ({cartItem, onIncrease, onReduce})=>{
-    const [id,setId] = useState()
+const UserCart = ({cartItem, onIncrease, onReduce , clear})=>{
     const [showAddres,setShowAddres] = useState(false)
-    const [pago,setPago] = useState(false)
     const [add,setAdd] = useState(false)
     const userData = JSON.parse(localStorage.getItem("USER"))
     const [selectedAddress,setSelectedAddress] = useState(userData.address[0])
@@ -19,23 +16,23 @@ console.log(total)
 const payIdHandler = (event) => {
     event.preventDefault();
     if (
-      true
+      selectedAddress && cartItem[0] && userData
       ){console.log('a')
-      // const monYear = expireDate.split("/")
       fetch("/Vintus/create_preference", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({description:"Compra en Vintus",price:total}),
+        body: JSON.stringify({description:"Compra en Vintus",price:total,email:userData.email,apiKey:userData.apiKey,buy:{address:selectedAddress,cart:cartItem,price:total}}),
       })
         .then((response) => {
           console.log(response)
           return response.json();
         })
         .then((preference) => {
-         setId(preference.id)
-         setPago(true);
+          clear()
+          window.location.href = preference.url
+ 
           
 
           
@@ -118,7 +115,7 @@ const payIdHandler = (event) => {
            </section>} 
 
            <button style={{width:"100%"}} onClick={payIdHandler}>Finalizar</button>
-           {pago && <Wallet initialization={{ preferenceId:id }} />}
+         
         </>
     )
 }

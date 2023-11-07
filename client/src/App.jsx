@@ -28,7 +28,7 @@ function App() {
   
 
   const [cartDysplay,setCartDisplay]=useState("")
-  const [cartItems,addToCartHandler,reduce,increase]=useCart();
+  const [cartItems,addToCartHandler,reduce,increase,clear]=useCart();
   const userData = JSON.parse(localStorage.getItem("USER"))
   const location = useLocation();
   const showCart = ()=>{
@@ -95,7 +95,7 @@ function App() {
           <Route path="Direcciones" element={<UserAddress/>} />
           <Route path="Pedidos" element={<UserOrders />} />
           <Route path="Autenticacion" element={<UserAuth />} />
-          <Route path="Carrito" element={<UserCart cartItem={cartItems} onIncrease={increase} onReduce={reduce}/>} />
+          <Route path="Carrito" element={<UserCart cartItem={cartItems} onIncrease={increase} onReduce={reduce} clear={clear}/>} />
         </Route>
         <Route path="/*" element={<h1>Error page not found</h1>} />
     </Routes>
