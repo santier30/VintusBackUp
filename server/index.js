@@ -5,7 +5,8 @@ const users = require('./routes/users')
 const mongoose = require('mongoose');
 const Wine = require('./schemas/Wine')
 const Users = require('./schemas/User')
-const fileUpload = require('express-fileupload');
+const cors = require("cors");
+const mercadopago = require("mercadopago");
 
 const app = express()
 mongoose.connect("mongodb+srv://Santier30:VintusTM@vintus.rseaz50.mongodb.net/Vintus").then(() => {
@@ -15,36 +16,48 @@ mongoose.connect("mongodb+srv://Santier30:VintusTM@vintus.rseaz50.mongodb.net/Vi
     console.error('Failed to connect to MongoDB:', error);
   });
 
-  // async function run(){
-  //   const data = req.body
-    // try {    
+  mercadopago.configure({
+    access_token: "TEST-4586980718908238-110701-1040fa2a3694bc34200b4b4b8b3d7e43-1539628910",
+  });
 
-    // const updatedUser = await Users.findOneAndUpdate(
-    //   { _id: "65432969f64fd899c7148685" },
-    //   { $pull: { address: { _id: "654586389a6be14b788d6b4a" } } },
-    //   { new: true }
-    // ).exec();
-  
-    // if (updatedUser) {
-
-    //   console.log(updatedUser);
-    // } else {
-
-    //   console.log("User or address not found");
-    // }
-        
-    // } catch (error) {
-    //     console.log(error.message)
-    // }
-
-  // }
-  // setTimeout( ()=>{run()},2000)
  
-  
+ 
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cors());
 app.use('/Vintus/Products', products)
 app.use('/Vintus/Users', users)
+app.use('/Vintus/create_preference', (req, res) => {
+console.log('dhsfjhsdfjhjsdhf')
+	let preference = {
+		items: [
+			{
+				title: req.body.description,
+				unit_price: Number(req.body.price),
+				quantity: 1,
+			}
+		],
+		back_urls: {
+			"success": "http://localhost:5000/Vintus/feedback",
+			"failure": "http://localhost:3000",
+			"pending": ""
+		},
+		auto_return: "approved",
+	};
+
+	mercadopago.preferences.create(preference)
+		.then(function (response) {
+			res.json({
+				id: response.body.id
+			});
+		}).catch(function (error) {
+			console.log(error);
+		});
+});
+
+app.get('/Vintus/feedback', function (req, res) {
+	console.log(req.query)
+  res.redirect('http://localhost:3000/Vintus');
+});
 app.listen(5000,()=> console.log('listening on port5000...'));

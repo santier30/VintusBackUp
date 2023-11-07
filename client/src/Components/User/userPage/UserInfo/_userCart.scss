@@ -37,13 +37,13 @@
                 
             }
             button{
-                a{
+                
                     text-decoration: none;
                     color: $tertiary-color;
                     &:active{
                         color:#136d33
                     }
-                }
+              
                 margin-top: 1rem;
                 background-color: transparent;
                 
@@ -108,6 +108,12 @@
 
         }
     }
+}
+#grey{
+    border: solid 1px #908f8f;
+}
+.select{
+    border: solid 1px $secondary-color !important;
 }
 
 @include media-md{

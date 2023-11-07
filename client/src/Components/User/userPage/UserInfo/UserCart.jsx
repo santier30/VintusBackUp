@@ -1,7 +1,49 @@
 import { Link } from "react-router-dom"
+import { useState } from "react"
+import AddAddress from "./AddressFIles/addAdress"
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+initMercadoPago("TEST-995ee899-dae7-4488-a7de-70e37d66510f");
 const UserCart = ({cartItem, onIncrease, onReduce})=>{
+    const [id,setId] = useState()
+    const [showAddres,setShowAddres] = useState(false)
+    const [pago,setPago] = useState(false)
+    const [add,setAdd] = useState(false)
+    const userData = JSON.parse(localStorage.getItem("USER"))
+    const [selectedAddress,setSelectedAddress] = useState(userData.address[0])
+
 const subTotal = cartItem[0]?cartItem.reduce((a, c) => {return a += parseFloat(c.Price)*c.Amount}, 0).toFixed(2):"Precio Total"
-console.log(subTotal)
+const total = Number(subTotal)>150?Number(subTotal):Number(subTotal)+20
+console.log(total)
+
+
+const payIdHandler = (event) => {
+    event.preventDefault();
+    if (
+      true
+      ){console.log('a')
+      // const monYear = expireDate.split("/")
+      fetch("/Vintus/create_preference", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({description:"Compra en Vintus",price:total}),
+      })
+        .then((response) => {
+          console.log(response)
+          return response.json();
+        })
+        .then((preference) => {
+         setId(preference.id)
+         setPago(true);
+          
+
+          
+        })
+        .catch((error) => {
+          console.error(error);
+        })}    
+     };
     return(
         <>
         <article>
@@ -40,12 +82,43 @@ console.log(subTotal)
             <div><h3>{`Subtotal`}</h3><span>{"$" + subTotal}</span></div>
             <div><h3>{`Envio`}</h3><span>{Number(subTotal)>150?"Gratis":"$20"}</span></div>
             <div><h3>Total</h3><span>{Number(subTotal)>150?`$${subTotal}`:`$${Number(subTotal)+20}`}</span></div>
-            <button ><Link to="/Finalizar-Compra">Comprar</Link></button>
+            <button onClick={()=>{setShowAddres(true)}} disabled={cartItem[0]?false:true}>Seleccionar Direccion</button>
             
             
         </div>
         </div>
         </article>
+        {showAddres && <section className="AddressProfile">
+           { !add ? (
+        <>
+          <article className="addresSection">
+            <h2>Direcciones</h2>
+            <button onClick={() => setAdd(!add)}>Agregar dirección</button>
+          </article>
+          <article className="addresses">
+
+          {userData.address.map((address)=>{
+            return(
+          <div id="grey" className={`address ${selectedAddress._id===address._id?"select":""}`} key={address._id}>
+          <p>{address.province}</p>
+          <p>{address.postalCode}</p>
+          <p>{address.street}</p>
+          <p>{address.number}</p>
+          <p>{address.apartment}</p>
+          <button onClick={()=>{setSelectedAddress(address)}} >Seleccionar</button>
+          </div>
+            )
+          })}
+
+          </article>
+          </>
+        ) : (
+          <AddAddress add={add} setAdd={setAdd} end='/Finalizar-Compra' />
+        )}
+           </section>} 
+
+           <button style={{width:"100%"}} onClick={payIdHandler}>Finalizar</button>
+           {pago && <Wallet initialization={{ preferenceId:id }} />}
         </>
     )
 }
