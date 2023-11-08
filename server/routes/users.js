@@ -13,6 +13,21 @@ router.post('/SingUp',singUp)
 
 router.post('/Login',logIn)
 
+router.post('/Check',async(req,res)=>{
+  const data = req.body;
+  console.log(data);
+try {
+  const user = await Users.findOne(data,{ password: 0 },);
+  console.log(user);
+if (user){res.status(200).json(user);}else{throw new Error("Email o contrasena incorrecta")}
+} catch (error) {
+  console.log(error.message);
+  res.status(500).json(error);
+}
+
+
+})
+
 router.post('/Update',async(req,res)=>{
     const data = req.body;
         console.log(data);

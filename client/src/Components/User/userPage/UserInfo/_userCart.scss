@@ -115,6 +115,20 @@
 .select{
     border: solid 1px $secondary-color !important;
 }
+.MP-Button{
+    background-color: Black ;
+    color: #fff;
+    padding: .4rem;
+    font-size: 1.15rem;
+    border-radius: .7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  box-shadow: 5px 6px 10px rgba(0, 0, 0, 0.28);
+  margin: 1rem auto;
+  max-width: 300px;
+ cursor: pointer;
+  border: none;}
 
 @include media-md{
     .userCart{

@@ -1,22 +1,10 @@
-import img1 from '../../img/Antologia-XXXVIII--38--Doble-MagnumBIG.webp'
-import img2 from '../../img/Dominio-ChardonnayBIG.webp'
-import img3 from '../../img/Estuche-Rutini-Extra-BrutBIG.webp'
-import img4 from '../../img/Trumpeter-MalbecBIG.webp'
-import img5 from '../../img/Trumpeter-Reserve-BlendBIG.webp'
-import img6 from '../../img/Trumpeter-Reserve-Rose-de-MalbecBIG.webp'
+
 import CartContext from '../../cart/CartContext'
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-const wineImages = {
-  '../../img/Antologia-XXXVIII--38--Doble-MagnumBIG.webp': img1,
-  '../../img/Dominio-ChardonnayBIG.webp': img2,
-  '../../img/Estuche-Rutini-Extra-BrutBIG.webp': img3,
-  '../../img/Trumpeter-MalbecBIG.webp': img4,
-  '../../img/Trumpeter-Reserve-BlendBIG.webp': img5,
-  '../../img/Trumpeter-Reserve-Rose-de-MalbecBIG.webp': img6,
-};
+
 const Wine = ({wine})=>{
-  let image = wineImages[wine.image]!==undefined?wineImages[wine.image]: wine.image;
+  let image =wine.image;
 
 
   const ctx = useContext(CartContext)

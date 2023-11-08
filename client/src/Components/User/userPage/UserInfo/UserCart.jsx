@@ -1,6 +1,7 @@
 import { useState } from "react"
 import AddAddress from "./AddressFIles/addAdress"
-import { initMercadoPago } from '@mercadopago/sdk-react'
+import { initMercadoPago} from '@mercadopago/sdk-react'
+import MP from "../../../img/icons8-mercado-pago-48.png"
 initMercadoPago("TEST-995ee899-dae7-4488-a7de-70e37d66510f");
 const UserCart = ({cartItem, onIncrease, onReduce , clear})=>{
     const [showAddres,setShowAddres] = useState(false)
@@ -31,7 +32,9 @@ const payIdHandler = (event) => {
         })
         .then((preference) => {
           clear()
+          localStorage.setItem("USER", JSON.stringify(preference.user))
           window.location.href = preference.url
+        
  
           
 
@@ -78,7 +81,7 @@ const payIdHandler = (event) => {
             
             <div><h3>{`Subtotal`}</h3><span>{"$" + subTotal}</span></div>
             <div><h3>{`Envio`}</h3><span>{Number(subTotal)>150?"Gratis":"$20"}</span></div>
-            <div><h3>Total</h3><span>{Number(subTotal)>150?`$${subTotal}`:`$${Number(subTotal)+20}`}</span></div>
+            {cartItem[0] && <div><h3>Total</h3><span>{Number(subTotal)>150?`$${subTotal}`:`$${Number(subTotal)+20}`}</span></div>}
             <button onClick={()=>{setShowAddres(true)}} disabled={cartItem[0]?false:true}>Seleccionar Direccion</button>
             
             
@@ -114,7 +117,8 @@ const payIdHandler = (event) => {
         )}
            </section>} 
 
-           <button style={{width:"100%"}} onClick={payIdHandler}>Finalizar</button>
+           <button className="MP-Button" style={{width:"100%"}} onClick={payIdHandler}><img src={MP} alt="MP"></img>Paga con Mercado Pago</button>
+
          
         </>
     )

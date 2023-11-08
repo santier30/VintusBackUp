@@ -36,12 +36,12 @@ function App() {
   }
   const updetedData = async ()=>{
     try {
-      const response = await fetch("/Vintus/Users/Login", {
+      const response = await fetch("/Vintus/Users/Check", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({email:userData.email, password:userData.password}),
+        body: JSON.stringify({email:userData.email, apiKey:userData.apiKey}),
       });
 
       if (!response.ok) {

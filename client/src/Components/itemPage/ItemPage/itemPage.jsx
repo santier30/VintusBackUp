@@ -1,28 +1,15 @@
 import { useState , useEffect,useContext } from "react";
 import { useParams, useLocation } from 'react-router-dom';
-import img1 from '../../img/Antologia-XXXVIII--38--Doble-MagnumBIG.webp'
-import img2 from '../../img/Dominio-ChardonnayBIG.webp'
-import img3 from '../../img/Estuche-Rutini-Extra-BrutBIG.webp'
-import img4 from '../../img/Trumpeter-MalbecBIG.webp'
-import img5 from '../../img/Trumpeter-Reserve-BlendBIG.webp'
-import img6 from '../../img/Trumpeter-Reserve-Rose-de-MalbecBIG.webp'
 import CartContext from '../../cart/CartContext'
 import ReactImageZoom from 'react-image-zoom';
 const ItemPage = ()=>{
   const { name } = useParams();
   const query = useLocation().search.slice(1);
-  const wineImages = {
-    '../../img/Antologia-XXXVIII--38--Doble-MagnumBIG.webp': img1,
-    '../../img/Dominio-ChardonnayBIG.webp': img2,
-    '../../img/Estuche-Rutini-Extra-BrutBIG.webp': img3,
-    '../../img/Trumpeter-MalbecBIG.webp': img4,
-    '../../img/Trumpeter-Reserve-BlendBIG.webp': img5,
-    '../../img/Trumpeter-Reserve-Rose-de-MalbecBIG.webp': img6,
-  };
+
 
 const [wine,setWine]=useState({})
 const [quantity,setQuantity]=useState(1)
-let image = wineImages[wine.image]!==undefined?wineImages[wine.image]: wine.image;
+let image =  wine.image;
 console.log(image)
 const ctx = useContext(CartContext)
 const props = {img: image,zoomPosition: "original",width: 300};
@@ -61,7 +48,7 @@ ctx.onAdd( wine.name,image, wine.price,wine.stock,quantity)}
             <div className="item-buttons">
             <button onClick={()=>{setQuantity(()=>quantity===1?1:quantity-1)}} >-</button>
             <div>{quantity}</div>
-            <button onClick={()=>{setQuantity(()=>quantity+1)}}>+</button>
+            <button onClick={()=>{setQuantity(()=>quantity===wine.stock?quantity:quantity+1)}}>+</button>
 
           </div>
           <button className="add" onClick={Add}>Agregar al carrito</button>

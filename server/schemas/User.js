@@ -61,7 +61,16 @@ const wineSchema = new mongoose.Schema({
       },]
 
 },
-  buys: Array,
+  buys:{
+    type:[{
+      address:Object,
+      cart:Array,
+      price:Number,
+      status:String,
+      date:Date,
+      idT:String
+    }]
+  } ,
   dni:{
     type: Number,
     validate: {

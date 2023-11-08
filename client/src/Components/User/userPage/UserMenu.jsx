@@ -13,6 +13,10 @@ const UserMenu = ()=>{
       setActive(pageName?{ [pageName]: "selected" }:{ Perfil: "selected" });
     }, [currentPath]);
     
+    const logOut = ()=>{
+      localStorage.clear();
+    }
+
     return(
        
       
@@ -24,6 +28,7 @@ const UserMenu = ()=>{
              <li ><Link className={active.Pedidos} to={'Pedidos'}>Pedidos</Link></li>
              <li ><Link className={active.Autenticacion} to={'Autenticacion'}>Autenticación</Link></li>
              <li ><Link className={active.Carrito} to={'Carrito'}>Carrito</Link></li>
+             <li ><Link onClick={logOut}  to={'/'}>Salir</Link></li>
            </menu>
            </nav>
        

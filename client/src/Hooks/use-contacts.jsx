@@ -75,6 +75,6 @@ const reset =()=>{
     
 };
 
-    return[phone,phoneValidation,name,nameValidation,message,messageValidation,email,emailValidation,reset];
+    return[phone,phoneValidation,name,nameValidation,message,messageValidation,email,emailValidation,reset,setMessage,setPhone,setEmail,setName];
 }
 export default useContacts;

@@ -86,7 +86,7 @@ const UserProfile = ()=>{
 
             <div>
             <h5>Fecha de Nacimiento</h5>
-            {!edit? <p>{userData.birth.split('T')[0]}</p>:<input type="date" value={selectedAge} onChange={(event)=> setSelectedAge(event.target.value)}/>}
+            {!edit? <p>{userData.birth?userData.birth.split('T')[0]:""}</p>:<input type="date" value={selectedAge} onChange={(event)=> setSelectedAge(event.target.value)}/>}
 
             </div>
 

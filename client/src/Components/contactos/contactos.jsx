@@ -1,11 +1,22 @@
 import useContacts from "../../Hooks/use-contacts"
 import useError from "../../Hooks/use-error";
 import usePost from "../../Hooks/usePost";
+import { useEffect } from "react";
 const Contactos = ()=>{
-const [phone,phoneValidation,name,nameValidation,message,messageValidation,email,emailValidation,reset]=useContacts()
+const [phone,phoneValidation,name,nameValidation,message,messageValidation,email,emailValidation,reset,setMessage,setPhone,setEmail,setName]=useContacts()
 const makeError = useError();
 const post = usePost('Enviando mensaje','Mensaje enviado!','Error al enviar mensaje.')
+const userData = JSON.parse(localStorage.getItem("USER"))
 
+const set =()=>{
+  setPhone({value:userData.phone,er:""})
+  setEmail({value:userData.email,er:""})
+  setName({value:userData.name,er:""})
+}
+useEffect(()=>{
+  set()
+
+},[])
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -37,13 +48,13 @@ const post = usePost('Enviando mensaje','Mensaje enviado!','Error al enviar mens
         <div className="form">
             <form id="sendMail"  onSubmit={submitHandler} >
 
-                <input type="text" id="name" name="name" placeholder="NOMBRE" required value={name.value} onChange={(event)=>{nameValidation(event.target.value)}}/>
+                <input type="text" id="name" name="name" placeholder="NOMBRE" required value={userData?userData.name:name.value} disabled={userData.name?true:false} onChange={(event)=>{nameValidation(event.target.value)}}/>
                 {name.er!=="" && name.er && <p id="name-error">{makeError(name.er)}</p>}
 
-                <input type="email" id="email" name="email" placeholder="EMAIL" required value={email.value} onChange={(event)=>{emailValidation(event.target.value)}}/>
+                <input type="email" id="email" name="email" placeholder="EMAIL" required value={email.value} disabled={userData.email?true:false}  onChange={(event)=>{emailValidation(event.target.value)}}/>
                 {email.er!=="" && email.er && <p id="email-error">{makeError(email.er)}</p>}
 
-                <input type="tel" id="phone-number" name="phone" placeholder="TELEFONO" value={phone.value} onChange={(event)=>{phoneValidation(event.target.value)}}/>
+                <input type="tel" id="phone-number" name="phone" placeholder="TELEFONO" value={phone.value} disabled={userData.phone?true:false} onChange={(event)=>{phoneValidation(event.target.value)}}/>
                 {phone.er!=="" && phone.er &&  <p  id="phone-number-error">{makeError(phone.er)}</p>}
 
                 <textarea id="message" name="message" rows="4" cols="50" required placeholder="MENSAJE" value={message.value} onChange={(event)=>{messageValidation(event.target.value)}}></textarea>

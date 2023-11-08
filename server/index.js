@@ -7,6 +7,8 @@ const Wine = require('./schemas/Wine')
 const Users = require('./schemas/User')
 const cors = require("cors");
 const mercadopago = require("mercadopago");
+const nodemailer = require('nodemailer');
+
 
 const app = express()
 mongoose.connect("mongodb+srv://Santier30:VintusTM@vintus.rseaz50.mongodb.net/Vintus").then(() => {
@@ -29,11 +31,29 @@ app.use(cors());
 app.use('/Vintus/Products', products)
 app.use('/Vintus/Users', users)
 app.use('/Vintus/create_preference', async(req, res) => {
-console.log('dhsfjhsdfjhjsdhf')
 console.log(req.body)
-console.log('dhsfjhsdfjhjsdhf')
 const user = await Users.findOne({email:req.body.email,apiKey:req.body.apiKey},{ password: 0 });
+const transporter = nodemailer.createTransport({
+	service: 'Gmail', 
+	auth: {
+		user: 'VintusTm@gmail.com',
+		pass: 'orao eoqs ooji qibw',
+	},
+});
 
+
+
+const clientMail = {
+	from: 'VintusTm@gmail.com',
+	to: req.body.email,
+	subject: `Vintus Gracias por su Compra`,
+	text: `
+Gracias por su compra 
+	`,
+}
+
+
+await transporter.sendMail(clientMail);
 	let preference = {
 		items: [
 			{
@@ -53,7 +73,7 @@ const user = await Users.findOne({email:req.body.email,apiKey:req.body.apiKey},{
 	mercadopago.preferences.create(preference)
 		.then(async function (response) {
 			let data = req.body.buy
-			data.status = "inverificado";
+			data.status = "No verificado";
 			data.date = response.body.date_created
 			data.idT = response.body.id
 			user.buys=user.buys[0]?[...user.buys,data]:[data];
@@ -61,7 +81,8 @@ const user = await Users.findOne({email:req.body.email,apiKey:req.body.apiKey},{
 			const a = await user.save();
 
 			res.json({
-				url: response.body.init_point
+				url: response.body.init_point,
+				user:a
 			});
 		}).catch(function (error) {
 			console.log(error);
