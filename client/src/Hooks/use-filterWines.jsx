@@ -1,6 +1,6 @@
 import {  useCallback } from 'react';
 
-function useFilterWines( filters , setFilteredWines) {
+function useFilterWines( filters , setFilteredWines,setLoading) {
  
 
   const filterWinesHandler = useCallback(() => {
@@ -22,6 +22,7 @@ function useFilterWines( filters , setFilteredWines) {
           .then((response) =>  response.json())
           .then((data) => {
             setFilteredWines(data);
+            if(data.length === 12){setLoading(true);}
   
           })
           .catch((error) => {

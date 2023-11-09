@@ -1,7 +1,7 @@
 const Wine = require('../schemas/Wine')
 const getWinesData = async(req, res)=> {
   try {
-    const wines = await Wine.find()
+    const wines = await Wine.find() 
 
     let lBrands = [];
     wines.forEach((wine) => {
@@ -12,7 +12,7 @@ const getWinesData = async(req, res)=> {
     
 let winePrices = wines.map((wine) => wine.price);
 let biggestPrice = Math.max(...winePrices);
-const winesSend = {wines:wines,brands:lBrands,biggest:biggestPrice};
+const winesSend = {wines:wines.slice(0,12),brands:lBrands,biggest:biggestPrice};
 res.setHeader('Content-Type', 'application/json');
 res.status(200).json(winesSend);
   
@@ -91,7 +91,7 @@ const postNewItem = async(req,res)=>{
           filter.name = new RegExp(search, 'i');
         }
 
-const wines = await Wine.find(filter)
+const wines = await Wine.find(filter).limit(12)
 console.log("filtered")
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(wines);
