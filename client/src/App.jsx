@@ -12,7 +12,7 @@ import useCart from './Hooks/use-cart';
 import CartContext from './Components/cart/CartContext';
 import 'font-awesome/css/font-awesome.min.css';
 import Footer from './Components/footer/footer';
-import ItemPage from './Components/itemPage/ItemPage/itemPage';
+import ItemPage from './Components/itemPage/itemPage';
 import LogIn from './Components/User/LogIn';
 import SingUp from './Components/User/SingUp';
 import UserPage from './Components/User/userPage/UserPage';

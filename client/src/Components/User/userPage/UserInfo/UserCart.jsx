@@ -13,36 +13,35 @@ const subTotal = cartItem[0]?cartItem.reduce((a, c) => {return a += parseFloat(c
 const total = Number(subTotal)>150?Number(subTotal):Number(subTotal)+20
 console.log(total)
 
+const pay = async()=>{
+  try {
+    const response = await fetch("/Vintus/create_preference", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({description:"Compra en Vintus",price:total,email:userData.email,apiKey:userData.apiKey,buy:{address:selectedAddress,cart:cartItem,price:total}}),
+    });
+
+if(!response.ok){throw new Error("Error fetching wines")}
+
+const preference = await response.json()
+clear()
+localStorage.setItem("USER", JSON.stringify(preference.user))
+window.location.href = preference.url
+  } catch (error) {
+    console.error(error);
+  }};
 
 const payIdHandler = (event) => {
     event.preventDefault();
     if (
       selectedAddress && cartItem[0] && userData
-      ){console.log('a')
-      fetch("/Vintus/create_preference", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({description:"Compra en Vintus",price:total,email:userData.email,apiKey:userData.apiKey,buy:{address:selectedAddress,cart:cartItem,price:total}}),
-      })
-        .then((response) => {
-          console.log(response)
-          return response.json();
-        })
-        .then((preference) => {
-          clear()
-          localStorage.setItem("USER", JSON.stringify(preference.user))
-          window.location.href = preference.url
-        
+      ){
+        console.log('a')
+        pay()
  
-          
-
-          
-        })
-        .catch((error) => {
-          console.error(error);
-        })}    
+    }    
      };
     return(
         <>

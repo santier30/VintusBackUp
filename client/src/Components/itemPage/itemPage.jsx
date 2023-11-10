@@ -1,6 +1,6 @@
-import { useState , useEffect,useContext } from "react";
+import { useState , useEffect,useContext,useCallback } from "react";
 import { useParams, useLocation } from 'react-router-dom';
-import CartContext from '../../cart/CartContext'
+import CartContext from '../cart/CartContext'
 import ReactImageZoom from 'react-image-zoom';
 const ItemPage = ()=>{
   const { name } = useParams();
@@ -10,24 +10,28 @@ const ItemPage = ()=>{
 const [wine,setWine]=useState({})
 const [quantity,setQuantity]=useState(1)
 let image =  wine.image;
-console.log(image)
 const ctx = useContext(CartContext)
 const props = {img: image,zoomPosition: "original",width: 300};
 
 const Add = ()=>{
 ctx.onAdd( wine.name,image, wine.price,wine.stock,quantity)}
+
+const getWine =  useCallback(async()=>{
+try {
+  const response = await fetch(`/Vintus/Products/Buy/${name}?key=${query}`);
+  if(!response.ok){throw new Error("Error fetching wines")}
+  const data = await response.json()
+  setWine(data)
+} catch (error) {
+  console.error("Error fetching wine data:", error);
+}
+
+},[name, query])
+
     useEffect(() => {
-  
-        fetch(`/Vintus/Products/Buy/${name}?key=${query}`)
-          .then((response) =>  response.json())
-          .then((data) => {
-            setWine(data)
-  
-          })
-          .catch((error) => {
-            console.error("Error fetching wine data:", error);
-          });
-    }, [name, query])
+      getWine()
+    }, [getWine])
+
     return(<main className="itemPage">
       <section className="itemSec">
         <article className="itemImg" >

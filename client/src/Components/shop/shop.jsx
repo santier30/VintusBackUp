@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef , useCallback} from 'react';
 
 import FilterContext from './shopSections/Filters/FIlterContext';
 
@@ -57,22 +57,23 @@ const Shop = ()=>{
     setPage(page + 1);
 
   };
+  const getWines =  useCallback(async()=>{
+    try {
+      const response = await  fetch("/Vintus/Products/Shop");
+  if(!response.ok){throw new Error("Error fetching wines")}
+  const data = await response.json()
+  console.log(data)///////////////////////////////////
+  const {wines,brands,biggest} = data
+  setFilteredWines(wines);
+  setBrands(brands);
+  biggestPrice.current = biggest
+    } catch (error) {
+      console.error("Error fetching wine data:", error);
+    }},[]);
 
   useEffect(() => {
-  
-      fetch("/Vintus/Products/Shop")
-        .then((response) =>  response.json())
-        .then((data) => {
-          console.log(data)///////////////////////////////////
-          const {wines,brands,biggest} = data
-          setFilteredWines(wines);
-          setBrands(brands);
-          biggestPrice.current = biggest
-        })
-        .catch((error) => {
-          console.error("Error fetching wine data:", error);
-        });
-  }, [])
+    getWines()
+  }, [getWines])
 
 
  useEffect(() => {

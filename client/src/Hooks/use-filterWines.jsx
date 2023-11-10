@@ -3,7 +3,7 @@ import {  useCallback } from 'react';
 function useFilterWines( filters , setFilteredWines,setLoading) {
  
 
-  const filterWinesHandler = useCallback(() => {
+  const filterWinesHandler = useCallback(async() => {
    
 
     const { type, brand, priceRange, search } = filters;
@@ -17,20 +17,18 @@ function useFilterWines( filters , setFilteredWines,setLoading) {
     if (search!== "") queryParams.push(`search=${search}`);
     
     const queryString = queryParams.join('&');
-
-      fetch(`/Vintus/Products/Filter?${queryString}`)
-          .then((response) =>  response.json())
-          .then((data) => {
-            setFilteredWines(data);
-            if(data.length === 12){setLoading(true);}
+try {
+  const response = await fetch(`/Vintus/Products/Filter?${queryString}`)
+  if(!response.ok) {throw new Error("error filtering")}
+  const data = await response.json();
+  setFilteredWines(data);
+  if(data.length === 12){setLoading(true);}
+} catch (error) {
+  console.error("Error fetching wine data:", error);
+}
   
-          })
-          .catch((error) => {
-            console.error("Error fetching wine data:", error);
-          });
 
-
-  }, [filters,setFilteredWines]);
+  }, [filters, setFilteredWines, setLoading]);
 
 
 
