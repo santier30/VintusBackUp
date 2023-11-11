@@ -30,7 +30,7 @@ const Shop = ()=>{
   useEffect(() => {
    
     if (inView) {
-      loadMoreProducts();
+     loadMoreProducts();
     }
   }, [inView]);
 
@@ -132,7 +132,8 @@ const Shop = ()=>{
         
         </section>
 
-        {filteredWines[0] && loading && <div ref={ref}>LOADING...</div>}
+        {filteredWines[0] && loading && <div ref={ref} className='Load'><p>LOADING...</p>
+        <div className='move'></div></div>}
         </main>
    
     )

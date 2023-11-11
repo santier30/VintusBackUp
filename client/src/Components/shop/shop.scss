@@ -1,5 +1,40 @@
+.Load{
+  background:rgb(51, 50, 50);
+  color: #FFF;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
 
+ p{
+  position: relative;
+  z-index: 2;
+ }
+  .move{
+    background-color:rgba(99, 99, 99, 0.326);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    animation-name: aaa;
+    animation-iteration-count: infinite;
+    animation-duration: 4s;
+    z-index: 1;
+    right: 0%;
+  }
+}
+@keyframes aaa {
+  0% {
+    right: 100%;
+  }
+  50% {
+    right: 0%;
+  }
+  100% {
+    right: -100%;
+  }
+}
 .wine {
+
     display: flex;
     flex-direction: column;
   
