@@ -67,7 +67,7 @@ const wineSchema = new mongoose.Schema({
       cart:Array,
       price:Number,
       status:String,
-      date:Date,
+      date:String,
       idT:String
     }]
   } ,

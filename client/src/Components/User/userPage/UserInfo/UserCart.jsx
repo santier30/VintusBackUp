@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { toast } from "react-toastify";
 import AddAddress from "./AddressFIles/addAdress"
 import { initMercadoPago} from '@mercadopago/sdk-react'
 import MP from "../../../img/icons8-mercado-pago-48.png"
@@ -15,6 +16,7 @@ console.log(total)
 
 const pay = async()=>{
   try {
+    var id = toast.loading("Por favor espere");
     const response = await fetch("/Vintus/create_preference", {
       method: "POST",
       headers: {
@@ -26,11 +28,13 @@ const pay = async()=>{
 if(!response.ok){throw new Error("Error fetching wines")}
 
 const preference = await response.json()
+toast.update(id, { render: "Abriendo Mercado Pago", type: "success", isLoading: false, autoClose: true });
 clear()
 localStorage.setItem("USER", JSON.stringify(preference.user))
 window.location.href = preference.url
   } catch (error) {
     console.error(error);
+    toast.update(id, { render: "Fallo al conectar con Mercado Pago", type: "error", isLoading: false, autoClose: true });
   }};
 
 const payIdHandler = (event) => {

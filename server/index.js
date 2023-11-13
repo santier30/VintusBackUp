@@ -8,6 +8,7 @@ const Users = require('./schemas/User')
 const cors = require("cors");
 const mercadopago = require("mercadopago");
 const nodemailer = require('nodemailer');
+const { DateTime } = require("luxon");
 
 
 const app = express()
@@ -74,10 +75,11 @@ await transporter.sendMail(clientMail);
 		.then(async function (response) {
 			let data = req.body.buy
 			data.status = "No verificado";
-			data.date = response.body.date_created
+			data.date = DateTime.now().setZone("America/Argentina/Buenos_Aires");
 			data.idT = response.body.id
 			user.buys=user.buys[0]?[...user.buys,data]:[data];
 			console.log('dhsfjhsdfjhjsdhf')
+			console.log(data.date)
 			const a = await user.save();
 
 			res.json({
