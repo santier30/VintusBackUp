@@ -4,7 +4,7 @@ import FilterContext from '../FIlterContext';
 
 const FilterCategory = () => {
   const ctx = useContext(FilterContext)
-  const categories = ['Tinto',"Cabernet Sauvignon", 'Espumante', 'Rosé', 'Blanco', 'Otros'];
+  const categories = ['Tinto',"Cabernet Sauvignon", 'Espumante', 'Rosé', 'Blanco'];
   const {setType } = ctx;
   return (
     <ul className="wine_filters">

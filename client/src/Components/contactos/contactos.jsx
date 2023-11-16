@@ -14,13 +14,13 @@ const set =()=>{
   setName({value:userData.name,er:""})
 }
 useEffect(()=>{
-  set()
-
+  if(userData){
+    set()
+  }
 },[])
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log('a')
     if (
       name.er==="" && email.er==="" && phone.er==="" && message.er===""
     ) {
@@ -29,6 +29,7 @@ useEffect(()=>{
         
     } 
   };
+  console.log(name)
     return(
 <main>
   
@@ -48,13 +49,13 @@ useEffect(()=>{
         <div className="form">
             <form id="sendMail"  onSubmit={submitHandler} >
 
-                <input type="text" id="name" name="name" placeholder="NOMBRE" required value={userData?userData.name:name.value} disabled={userData.name?true:false} onChange={(event)=>{nameValidation(event.target.value)}}/>
+                <input type="text" id="name" name="name" placeholder="NOMBRE" required value={userData?userData.name:name.value} disabled={userData?true:false} onChange={(event)=>{nameValidation(event.target.value)}}/>
                 {name.er!=="" && name.er && <p id="name-error">{makeError(name.er)}</p>}
 
-                <input type="email" id="email" name="email" placeholder="EMAIL" required value={email.value} disabled={userData.email?true:false}  onChange={(event)=>{emailValidation(event.target.value)}}/>
+                <input type="email" id="email" name="email" placeholder="EMAIL" required value={email.value} disabled={userData?true:false}  onChange={(event)=>{emailValidation(event.target.value)}}/>
                 {email.er!=="" && email.er && <p id="email-error">{makeError(email.er)}</p>}
 
-                <input type="tel" id="phone-number" name="phone" placeholder="TELEFONO" value={phone.value} disabled={userData.phone?true:false} onChange={(event)=>{phoneValidation(event.target.value)}}/>
+                <input type="tel" id="phone-number" name="phone" placeholder="TELEFONO" value={phone.value} disabled={userData?true:false} onChange={(event)=>{phoneValidation(event.target.value)}}/>
                 {phone.er!=="" && phone.er &&  <p  id="phone-number-error">{makeError(phone.er)}</p>}
 
                 <textarea id="message" name="message" rows="4" cols="50" required placeholder="MENSAJE" value={message.value} onChange={(event)=>{messageValidation(event.target.value)}}></textarea>

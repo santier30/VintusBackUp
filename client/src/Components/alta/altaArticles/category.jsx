@@ -13,8 +13,6 @@ const Category =({category , setCategory, sub})=>{
                 <label htmlFor="rose">Rosé</label>
                 <input type="radio" id="blanco" name="wine-category" className="wine-category" checked={category.value==="Blanco"} value="Blanco" onChange={(event)=>setCategory(event.target.value)}/>
                 <label htmlFor="blanco">Blanco</label>
-                <input type="radio" id="otros" name="wine-category" className="wine-category" checked={category.value==="Otros"} value="Otros" onChange={(event)=>setCategory(event.target.value)}/>
-                <label htmlFor="otros">Otros</label>
             </div>
         </div>
        { category.er!=="" &&  sub && <p id="categoria-error" className="animated">Seleccione una categoria</p>}
