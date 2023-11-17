@@ -67,20 +67,9 @@ function App() {
 
   return (
     <CartContext.Provider value={{onAdd:addToCartHandler}} >
-    <>
     <Cart displayState={cartDysplay} cartItem={cartItems} onIncrease={increase} onReduce={reduce} />
     <Menu setDisplayState={showCart}/>
-    <ToastContainer
-    position="top-center"
-    autoClose={1500}
-    hideProgressBar={false}
-    newestOnTop={false}
-    closeOnClick
-    rtl={false}
-    pauseOnFocusLoss
-    draggable
-    pauseOnHover
-    theme="dark" />
+    <ToastContainer position="top-center" autoClose={1500} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
     <Routes>
     <Route path="/Alta" element={<Alta />} />
         <Route path="/sobreNosotros" element={<SobreNosotros />} />
@@ -100,7 +89,6 @@ function App() {
         <Route path="/*" element={<h1>Error page not found</h1>} />
     </Routes>
     <Footer/>
-  </>
   </CartContext.Provider>
   );
 }
