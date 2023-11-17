@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const wineSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true, 
@@ -97,7 +97,7 @@ const wineSchema = new mongoose.Schema({
   collection: 'Users',
 });
 
-wineSchema.pre('save', function(next) {
+userSchema.pre('save', function(next) {
   if (this.isNew || this.isModified()) {
     // Generate a new apiKey if it's a new document or if any field is modified
     const sixDigitRandomNumber = Math.floor(100000 + Math.random() * 900000); // Generates a random 6-digit number
@@ -106,10 +106,10 @@ wineSchema.pre('save', function(next) {
   next();
 });
 
-wineSchema.pre('updateOne', function(next) {
+userSchema.pre('updateOne', function(next) {
   const sixDigitRandomNumber = Math.floor(100000 + Math.random() * 900000); // Generates a random 6-digit number
   this.update({}, { $set: { apiKey: sixDigitRandomNumber } });
   next();
 });
 
-module.exports = mongoose.model('Users', wineSchema);
+module.exports = mongoose.model('Users', userSchema);
