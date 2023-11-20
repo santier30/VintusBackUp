@@ -91,6 +91,7 @@ const userSchema = new mongoose.Schema({
       message: 'Numero de telefono invalido',
     },
   },
+  cart:Array,
   apiKey:Number
 
 }, {

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 const Cart = (props)=>{
   const inCartFood = props.cartItem;
   const userData = JSON.parse(localStorage.getItem("USER"))
+  
     return(
         <section className={"cart "+props.displayState} id="cart_section">
         <article className="cart_items" id="Cart-items">
@@ -25,6 +26,7 @@ const Cart = (props)=>{
             <span id="total">{inCartFood[0]?"$" + inCartFood.reduce((a, c) => {return a += parseFloat(c.Price)*c.Amount}, 0).toFixed(2):"PRECIO TOTAL"}</span>
           </div>
           <button id="cart_submit"><Link to={userData?"/Usuario/Carrito":"/Ingresar"}>Finalizar Pedido</Link></button>
+          <button id="cart_submit" onClick={props.onUpdate}>Guardar</button>
         </article>
         </section> 
     )

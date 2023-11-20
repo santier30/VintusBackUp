@@ -17,6 +17,21 @@ router.post('/Check',check)
 
 router.post('/Update',update)
 
+router.post('/Cart',async(req,res)=>{
+    const data = req.body;
+        console.log(data.cart);
+      try {
+        const user = await Users.findOne({email:data.email,apiKey:data.apiKey},{ password: 0 });
+        console.log(user);
+        user.cart=data.cart;
+        const resp =  await user.save()
+     if (resp){res.status(200).json(resp);}else{throw new Error("Email o contrasena incorrecta")}
+      } catch (error) {
+        console.log(error.message);
+        res.status(500).json(error);
+      }
+})
+
 router.post('/Address',addAddress)
 
 router.delete('/Delete/:addressId', deleteAddress);
@@ -28,3 +43,4 @@ router.post('/Password',changePassword)
 
 
 module.exports = router;
+

@@ -28,7 +28,9 @@ function App() {
   
 
   const [cartDysplay,setCartDisplay]=useState("")
-  const [cartItems,addToCartHandler,reduce,increase,clear]=useCart();
+  const [cartItems,addToCartHandler,reduce,increase,clear,update]=useCart();
+
+  
   const userData = JSON.parse(localStorage.getItem("USER"))
   const location = useLocation();
   const showCart = ()=>{
@@ -67,7 +69,7 @@ function App() {
 
   return (
     <CartContext.Provider value={{onAdd:addToCartHandler}} >
-    <Cart displayState={cartDysplay} cartItem={cartItems} onIncrease={increase} onReduce={reduce} />
+    <Cart displayState={cartDysplay} cartItem={cartItems} onIncrease={increase} onReduce={reduce} onUpdate={update}/>
     <Menu setDisplayState={showCart}/>
     <ToastContainer position="top-center" autoClose={1500} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
     <Routes>

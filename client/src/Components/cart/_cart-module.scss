@@ -67,14 +67,17 @@
             padding: .6rem 0; 
             background-color: rgba(0, 0, 0, 0.849);
             border: none;
-            
+            color: $tertiary-color;
             a{
                 text-decoration: none;
-                color: $tertiary-color;
+                color: $secondary-color;
+                &:hover{
+                    color:#b9134f ; 
+                 }
             }
             cursor: pointer;
             &:hover{
-               color:#b9134f ; 
+               color:#0d6c18 ; 
             }
         }
     }
