@@ -27,7 +27,6 @@ const cartUpdate = async (data) => {
     const user = await response.json();
     toast.update(id, { render: "Guardado", type: "success", isLoading: false, autoClose: true });
     localStorage.setItem("USER", JSON.stringify(user))
-    localStorage.setItem("cartItems", JSON.stringify(user.cart));
     return;
   } catch (error) {
     console.error("error: ", error);
@@ -124,6 +123,7 @@ if(!userData && !flag){
 if(userData && flag){
   if(userData.cart){
     setFlag(false);
+    localStorage.setItem("cartItems", JSON.stringify([]));
     set(userData.cart)
   }
 }
@@ -154,7 +154,7 @@ const update = async() => {
         
                update()
              
-            },0 );
+            },1000 );
            
             return () => {
               if (typeof timer.current !== 'undefined') {
@@ -168,6 +168,6 @@ const update = async() => {
       
 
 
-        return [cartItems,addToCartHandler,reduce,increase,clear,update];
+        return [cartItems,addToCartHandler,reduce,increase,clear,update,set];
 };
 export default useCart;

@@ -28,7 +28,7 @@ function App() {
   
 
   const [cartDysplay,setCartDisplay]=useState("")
-  const [cartItems,addToCartHandler,reduce,increase,clear,update]=useCart();
+  const [cartItems,addToCartHandler,reduce,increase,clear,update,set]=useCart();
 
   
   const userData = JSON.parse(localStorage.getItem("USER"))
@@ -80,8 +80,8 @@ function App() {
         <Route path="/:name" element={<ItemPage/>} />
         <Route path="/Ingresar" element={<LogIn/>} />
         <Route path="/CrearCuenta" element={<SingUp/>} />
-        <Route path="/" element={<Landing/>} />
-        <Route path="/Usuario" element={<UserPage />}>
+        <Route path="/" element={<Landing/>}  />
+        <Route path="/Usuario" element={<UserPage resetCart={set} />}>
           <Route index element={<UserProfile/>} /> 
           <Route path="Direcciones" element={<UserAddress/>} />
           <Route path="Pedidos" element={<UserOrders />} />

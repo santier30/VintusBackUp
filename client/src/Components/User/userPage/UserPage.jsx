@@ -1,10 +1,10 @@
 import UserMenu from './UserMenu';
 import { Outlet } from 'react-router-dom';
-const UserPage = ()=>{
+const UserPage = ({resetCart})=>{
     return(
         <main className='UserPage'>
                 <div className='wrap'>
-                <UserMenu />
+                <UserMenu set={resetCart}/>
                 <section className='UserSection'>
                 <Outlet />
                 </section>

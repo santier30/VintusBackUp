@@ -1,7 +1,7 @@
 
 import { Link , useLocation} from 'react-router-dom';
 import { useState ,useEffect } from 'react';
-const UserMenu = ()=>{
+const UserMenu = ({set})=>{
     const userData = JSON.parse(localStorage.getItem("USER"))
   const [active,setActive] = useState({Tienda:"active"})
 
@@ -15,6 +15,7 @@ const UserMenu = ()=>{
     
     const logOut = ()=>{
       localStorage.clear();
+      set([])
     }
 
     return(
