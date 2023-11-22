@@ -12,6 +12,7 @@ import Img from "./altaArticles/img";
 import Descriptions from "./altaArticles/Descriptions";
 
 const Alta = ()=>{
+  const userData = JSON.parse(localStorage.getItem("USER"))
   const makeError = useError()
 const [alta,setName, setPrice, setCategory, setBrand, setStock, setImg, setShortDes, setLongDes,reset] = useForm()
 const [sub,setSub] = useState(false)
@@ -31,7 +32,7 @@ const submitHandler = (event)=>{
             "price": alta.price.value ,
             "stock":alta.stock.value
           };
-        post(newWine,"/Vintus/Products/Add")
+        post({newWine:newWine,email:userData.email,apiKey:userData.apiKey},"/Vintus/Products/Add")
 
         setSub(false)
         reset()

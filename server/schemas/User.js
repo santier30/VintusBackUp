@@ -92,7 +92,8 @@ const userSchema = new mongoose.Schema({
     },
   },
   cart:Array,
-  apiKey:Number
+  apiKey:Number,
+  admin:Boolean
 
 }, {
   collection: 'Users',

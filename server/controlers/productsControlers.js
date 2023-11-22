@@ -1,4 +1,5 @@
 const Wine = require('../schemas/Wine')
+const Users = require('../schemas/User')
 const getWinesData = async(req, res)=> {
   try {
     const wines = await Wine.find() 
@@ -128,7 +129,7 @@ const modulate = (req, res , next) => {
         long_description,
         price,
         stock,
-      } = req.body;
+      } = req.body.newWine;
 
     req.newWine = {
         "name": name.trim().replace(/\s+/g, ' '),
@@ -143,6 +144,22 @@ const modulate = (req, res , next) => {
       next();
 }
 
+const validate = async(req, res , next) => {
+  
+  const user = await Users.findOne({email:req.body.email,apiKey:req.body.apiKey},{ password: 0 })
+  console.log(user.admin)
+  if(user.admin){
+    console.log("admin true")
+    next();
+  }else{
+    res.status(500).json("Not admin")
+  }
+
+
+ 
+    
+}
+
 
 
 
@@ -153,5 +170,6 @@ module.exports ={
     filterWines,
     getKnowData,
     getExclusiveData,
-    getItem
+    getItem,
+    validate
 }

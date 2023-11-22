@@ -73,7 +73,7 @@ function App() {
     <Menu setDisplayState={showCart}/>
     <ToastContainer position="top-center" autoClose={1500} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
     <Routes>
-    <Route path="/Alta" element={<Alta />} />
+    {userData && userData.admin &&<Route path="/Alta" element={<Alta />} />}
         <Route path="/sobreNosotros" element={<SobreNosotros />} />
         <Route path="/contactos" element={<Contactos />} />
         <Route path="/Tienda" element={<Shop/>} />

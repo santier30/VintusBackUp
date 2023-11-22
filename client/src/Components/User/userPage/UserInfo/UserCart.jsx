@@ -116,7 +116,7 @@ const payIdHandler = (event) => {
           </article>
           </>
         ) : (
-          <AddAddress add={add} setAdd={setAdd} end='/Finalizar-Compra' />
+          <AddAddress add={add} setAdd={setAdd} end='/Usuario/Carrito' />
         )}
            </section>} 
 

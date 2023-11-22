@@ -36,7 +36,7 @@ function Menu(props) {
             </div>
             <menu className={"nav_menu "+open.menu}>
             <li className={"nav_li "+open.link}><Link to="/Tienda" className={"nav_Link "+active.Tienda}  >Tienda</Link> </li>
-            <li className={"nav_li "+open.link}><Link to="/Alta" className={"nav_Link "+active.Alta}  >Alta</Link></li>
+            {userData && userData.admin && <li className={"nav_li "+open.link}><Link to="/Alta" className={"nav_Link "+active.Alta}  >Alta</Link></li>}
             <li className={"nav_li "+open.link}><Link to="/Contactos" className={"nav_Link "+active.Contactos}  >Contactos</Link></li>
             <li className={"nav_li "+open.link}><Link to="/SobreNosotros" className={"nav_Link "+active.SobreNosotros}  >Sobre Nosotros</Link></li>
             <li className={"nav_li "+open.link}><Link to={userData?"/Usuario/Carrito":"/Ingresar"} className="nav_Link" id={"nav_Link "} onMouseEnter={()=>props.setDisplayState()} onMouseLeave={props.setDisplayState}><i className='fa fa-shopping-cart'></i></Link></li>
