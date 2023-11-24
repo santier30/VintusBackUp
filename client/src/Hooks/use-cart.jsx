@@ -30,7 +30,8 @@ const cartUpdate = async (data) => {
     return;
   } catch (error) {
     console.error("error: ", error);
-    toast.update(id, { render: "Error en el guardado", type: "error", isLoading: false, autoClose: true });
+    toast.update(id, { render: "Error no realiice cambios durante el guardado", type: "error", isLoading: false, autoClose: true });
+    set(userData.cart)
 
   }
 };
@@ -136,7 +137,7 @@ const update = async() => {
 
       isCartUpdateRunning.current = false;
    
-  }else{toast.error("Error al guardar espere al guardado o guarde manual", {
+  }else{toast.error("Error al guardar espere al guardado", {
     position: "top-center", 
     autoClose: 3000, 
   });}
@@ -152,7 +153,7 @@ const update = async() => {
             }
             timer.current = setTimeout(async() => {
         
-               update()
+              await cartUpdate(cartItems);
              
             },1000 );
            
